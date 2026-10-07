@@ -1,0 +1,5 @@
+**/__pycache__/
+**/.venv/
+MQ/实战/.data/
+MQ/实战/.test-tmp/
+MQ/实战/.env

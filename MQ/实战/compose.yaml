@@ -1,0 +1,23 @@
+name: orlando-mq-course
+services:
+  rabbitmq:
+    # Minor-version tag, not an immutable digest. Record the resolved digest per run.
+    image: rabbitmq:4.1-management
+    hostname: mq-course
+    ports:
+      - "127.0.0.1:5672:5672"
+      - "127.0.0.1:15672:15672"
+    volumes:
+      - rabbit-data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "2"
+volumes:
+  rabbit-data:
